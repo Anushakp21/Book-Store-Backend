@@ -13,8 +13,7 @@ import java.util.List;
 
 public class UserDetailsImpl implements UserDetails {
 
-    private User user;
-    @Autowired
+    private final User user;
     public UserDetailsImpl(User user) {
         this.user = user;
     }

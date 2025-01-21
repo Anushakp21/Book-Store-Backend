@@ -11,7 +11,7 @@
             private String description;
             private Double price;
             private Long quantity;
-            private Image bookImage;
+            private String bookImage;
 
             public Integer getBookId() {
                 return bookId;
@@ -61,11 +61,11 @@
                 this.quantity = quantity;
             }
 
-            public Image getBookImage() {
+            public String getBookImage() {
                 return bookImage;
             }
 
-            public void setBookImage(Image bookImage) {
+            public void setBookImage(String bookImage) {
                 this.bookImage = bookImage;
             }
         }

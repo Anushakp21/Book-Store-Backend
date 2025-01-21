@@ -14,8 +14,11 @@ import java.util.List;
 @RestController
 public class FeedbackController {
 
-    @Autowired
-    FeedbackServiceImpl feedbackService;
+    private final FeedbackServiceImpl feedbackService;
+
+    public FeedbackController(FeedbackServiceImpl feedbackService) {
+        this.feedbackService = feedbackService;
+    }
 
     @PostMapping("/send-feedback")
     public ResponseEntity<FeedbackResponse> sendFeedback(@RequestBody FeedbackRequest feedbackRequest)

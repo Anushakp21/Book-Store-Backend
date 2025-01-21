@@ -1,6 +1,5 @@
 package com.example.Book.Store.Application.requestdto;
 
-import com.example.Book.Store.Application.config.ValidFile;
 import com.example.Book.Store.Application.entity.Image;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -21,7 +20,6 @@ public class BookRequest {
     @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0")
     private Double price;
     @NotNull(message = "Logo is mandatory")
-    @ValidFile(message = "Only .jpg, .png, or .pdf files are allowed for the logo")
     private Image logo;
     @NotNull(message = "Quantity cannot be blank")
     @Min(value = 1, message = "Quantity must be at least 1")

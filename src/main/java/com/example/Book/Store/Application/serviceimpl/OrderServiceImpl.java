@@ -21,23 +21,22 @@ import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    @Autowired
-    OrderRepository orderRepository;
 
-    @Autowired
-    OrderMapper orderMapper;
+    private final OrderRepository orderRepository;
+    private final OrderMapper orderMapper;
+    private final Util util;
+    private final UserRepository userRepository;
+    private final CartServiceImpl cartService;
+    private final BookServiceImpl bookService;
 
-    @Autowired
-    Util util;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    CartServiceImpl cartService;
-
-    @Autowired
-    BookServiceImpl bookService;
+    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper, Util util, UserRepository userRepository, CartServiceImpl cartService, BookServiceImpl bookService) {
+        this.orderRepository = orderRepository;
+        this.orderMapper = orderMapper;
+        this.util = util;
+        this.userRepository = userRepository;
+        this.cartService = cartService;
+        this.bookService = bookService;
+    }
 
     @Transactional
     public OrderResponse placeOrder(String token,OrderRequest orderRequest) {

@@ -16,11 +16,13 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
-    @Autowired
-    BookMapper bookMapper;
+    private final BookMapper bookMapper;
+    private final BookRepository bookRepository;
 
-    @Autowired
-    BookRepository bookRepository;
+    public BookServiceImpl(BookMapper bookMapper, BookRepository bookRepository) {
+        this.bookMapper = bookMapper;
+        this.bookRepository = bookRepository;
+    }
 
     @Override
     public BookResponse addBook(MultipartFile bookImage, BookRequest bookRequest) {

@@ -22,14 +22,17 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-@AllArgsConstructor
 public class JwtFilter extends HttpFilter {
 
-    @Autowired
-    Util util;
+    private final Util util;
 
-    @Autowired
-    UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
+
+    JwtFilter(Util util,UserDetailsService userDetailsService)
+    {
+        this.util=util;
+        this.userDetailsService=userDetailsService;
+    }
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {

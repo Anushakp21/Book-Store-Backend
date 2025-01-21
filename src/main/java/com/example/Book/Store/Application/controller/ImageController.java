@@ -15,8 +15,11 @@ import java.io.IOException;
 @CrossOrigin(allowedHeaders = "*",origins = "*")
 public class ImageController {
 
-    @Autowired
-    private ImageService imageService;
+    private final ImageService imageService;
+
+    public ImageController(ImageService imageService) {
+        this.imageService = imageService;
+    }
 
     @PostMapping
     public ResponseEntity<?> addImages(@RequestPart MultipartFile image) throws IOException {

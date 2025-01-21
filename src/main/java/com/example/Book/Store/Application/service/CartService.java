@@ -7,7 +7,6 @@ import java.util.List;
 public interface CartService {
     CartResponse addToCart(long userId, Integer bookId, Long quantity);
 
-
     CartResponse updateQuantity(long cartId, long quantity);
 
     CartResponse removeFromCartByCartId(long cartId);

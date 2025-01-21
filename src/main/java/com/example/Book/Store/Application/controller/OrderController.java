@@ -14,8 +14,11 @@ import java.util.List;
 @RestController
 public class OrderController {
 
-    @Autowired
-    OrderServiceImpl orderService;
+    private final OrderServiceImpl orderService;
+
+    public OrderController(OrderServiceImpl orderService) {
+        this.orderService = orderService;
+    }
 
     @PostMapping("/order/place")
     public ResponseEntity<OrderResponse> placeOrder(@RequestHeader ("Authorization") String authHeader,@RequestBody @Valid   OrderRequest orderRequest)

@@ -21,17 +21,18 @@ import java.util.List;
 
 @Service
 public class WishlistServiceImpl implements WishlistService {
-    @Autowired
-    UserRepository userRepository;
 
-    @Autowired
-    BookRepository bookRepository;
+    private final UserRepository userRepository;
+    private final BookRepository bookRepository;
+    private final WishlistRepository wishlistRepository;
+    private final CartRepository cartRepository;
 
-    @Autowired
-    WishlistRepository wishlistRepository;
-
-    @Autowired
-    CartRepository cartRepository;
+    public WishlistServiceImpl(UserRepository userRepository, BookRepository bookRepository, WishlistRepository wishlistRepository, CartRepository cartRepository) {
+        this.userRepository = userRepository;
+        this.bookRepository = bookRepository;
+        this.wishlistRepository = wishlistRepository;
+        this.cartRepository = cartRepository;
+    }
 
     @Override
     public WishListResponse addBookToWishList(long userId, Integer bookId) {

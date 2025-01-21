@@ -16,8 +16,11 @@ import java.util.List;
 @CrossOrigin(allowedHeaders = "*",origins = "*")
 public class UserController {
 
-    @Autowired
-    UserServiceImpl userService;
+    private final UserServiceImpl userService;
+
+    public UserController(UserServiceImpl userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/register")
     public ResponseEntity<UserResponseDto> registerUser(@RequestBody RegistrationRequest registrationRequest) {

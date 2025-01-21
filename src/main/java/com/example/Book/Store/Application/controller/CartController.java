@@ -13,11 +13,14 @@ import java.util.List;
 @RestController
 public class CartController {
 
-    @Autowired
-    CartServiceImpl cartService;
+    private final CartServiceImpl cartService;
 
-    @Autowired
-    Util util;
+    private final Util util;
+
+    public CartController(CartServiceImpl cartService, Util util) {
+        this.cartService = cartService;
+        this.util = util;
+    }
 
     @PostMapping("/carts/add")
     public ResponseEntity<CartResponse> addToCart

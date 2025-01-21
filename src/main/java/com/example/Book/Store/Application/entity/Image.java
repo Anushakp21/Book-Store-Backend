@@ -1,7 +1,5 @@
 package com.example.Book.Store.Application.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,8 +15,8 @@ public class Image {
     @Lob
     private byte[] imageData;
 
-    @OneToOne
-    @JsonManagedReference
+    @OneToOne(mappedBy = "images")
+
     private Book book;
 
     public int getImageId() {

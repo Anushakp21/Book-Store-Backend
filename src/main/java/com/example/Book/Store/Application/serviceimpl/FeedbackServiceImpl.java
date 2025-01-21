@@ -18,14 +18,15 @@ import java.util.List;
 @Service
 public class FeedbackServiceImpl {
 
-    @Autowired
-    FeedbackRepository feedbackRepository;
+    private final FeedbackRepository feedbackRepository;
+    private final UserRepository userRepository;
+    private final BookRepository bookRepository;
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    BookRepository bookRepository;
+    public FeedbackServiceImpl(FeedbackRepository feedbackRepository, UserRepository userRepository, BookRepository bookRepository) {
+        this.feedbackRepository = feedbackRepository;
+        this.userRepository = userRepository;
+        this.bookRepository = bookRepository;
+    }
 
     public FeedbackResponse addFeedback(FeedbackRequest feedbackRequest) {
         User user=userRepository.findById(feedbackRequest.getUserId()).orElseThrow(()-> new UserNotFoundByIdException("User Not Found"));

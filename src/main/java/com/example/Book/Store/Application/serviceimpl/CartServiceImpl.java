@@ -20,17 +20,18 @@ import java.util.List;
 
 @Service
 public class CartServiceImpl implements CartService {
-    @Autowired
-    UserRepository userRepository;
 
-    @Autowired
-    BookRepository bookRepository;
+    private final UserRepository userRepository;
+    private final BookRepository bookRepository;
+    private final CartRepository cartRepository;
+    private final CartMapper cartMapper;
 
-    @Autowired
-    CartRepository cartRepository;
-
-    @Autowired
-    CartMapper cartMapper;
+    public CartServiceImpl(UserRepository userRepository, BookRepository bookRepository, CartRepository cartRepository, CartMapper cartMapper) {
+        this.userRepository = userRepository;
+        this.bookRepository = bookRepository;
+        this.cartRepository = cartRepository;
+        this.cartMapper = cartMapper;
+    }
 
     @Override
     public CartResponse addToCart(long userId, Integer bookId, Long quantity) {

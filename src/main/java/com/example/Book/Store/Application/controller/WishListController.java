@@ -14,11 +14,14 @@ import java.util.List;
 @RestController
 public class WishListController {
 
-    @Autowired
-    Util util;
+     private final Util util;
 
-    @Autowired
-    WishlistServiceImpl wishListService;
+     private final WishlistServiceImpl wishListService;
+
+    public WishListController(Util util, WishlistServiceImpl wishListService) {
+        this.util = util;
+        this.wishListService = wishListService;
+    }
 
 
     @PostMapping("wishlist/add/{bookId}")

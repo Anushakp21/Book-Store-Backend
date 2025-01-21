@@ -2,12 +2,8 @@ package com.example.Book.Store.Application.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -24,7 +20,6 @@ public class Book {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id", referencedColumnName = "imageId")
-    @JsonManagedReference
     private Image images;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -86,8 +81,8 @@ public class Book {
         this.orderBooks = orderBooks;
     }
 
-    public Image getImages() {
-        return images;
+    public String getImages() {
+        return images.getImageName();
     }
 
     public void setImages(Image images) {

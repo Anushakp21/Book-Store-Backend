@@ -26,26 +26,23 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+    private final AuthenticationManager authenticationManager;
+    private final Util util;
+    private final EmailService emailService;
+    private final BCryptPasswordEncoder encoder;
+    private final OtpUtil otpUtil;
 
-    @Autowired
-    UserMapper userMapper;
-
-    @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
-    Util util;
-
-    @Autowired
-    EmailService emailService;
-
-    @Autowired
-    BCryptPasswordEncoder encoder;
-
-    @Autowired
-    OtpUtil otpUtil;
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, AuthenticationManager authenticationManager, Util util, EmailService emailService, BCryptPasswordEncoder encoder, OtpUtil otpUtil) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+        this.authenticationManager = authenticationManager;
+        this.util = util;
+        this.emailService = emailService;
+        this.encoder = encoder;
+        this.otpUtil = otpUtil;
+    }
 
     @Override
     public UserResponseDto registerUser(RegistrationRequest registrationRequest) {
@@ -71,6 +68,8 @@ public class UserServiceImpl implements UserService {
         LoginResponse loginResponse = new LoginResponse();
         loginResponse.setEmail(user.getEmail());
         loginResponse.setJwtToken(token);
+        loginResponse.setUserId(user.getUserId());
+        loginResponse.setRole(user.getRole());
         return loginResponse;
     }
 
